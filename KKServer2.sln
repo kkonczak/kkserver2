@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KKServer2", "KKServer2\KKServer2.csproj", "{5E9A324B-69E7-451B-8296-EBBAA7D55A92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "httpd", "httpd\httpd.csproj", "{47EFD48D-E57A-4C48-B053-1CE8CC36F7BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pluginFilter", "pluginFilter\pluginFilter.csproj", "{765F6C4B-0824-432D-B3E7-4275EBD8D446}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KKServerGUI", "KKServerGUI\KKServerGUI.csproj", "{30876E3C-FFF4-4FD2-BC3A-CF4D0971C445}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pluginInterface", "pluginInterface\pluginInterface.csproj", "{E07D14FC-6DD8-4C20-9487-14CE8CE3844D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pluginReverseProxy", "pluginReverseProxy\pluginReverseProxy.csproj", "{224DAD42-87BB-43E0-9715-AE3185546164}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E9A324B-69E7-451B-8296-EBBAA7D55A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E9A324B-69E7-451B-8296-EBBAA7D55A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E9A324B-69E7-451B-8296-EBBAA7D55A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E9A324B-69E7-451B-8296-EBBAA7D55A92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47EFD48D-E57A-4C48-B053-1CE8CC36F7BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47EFD48D-E57A-4C48-B053-1CE8CC36F7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47EFD48D-E57A-4C48-B053-1CE8CC36F7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47EFD48D-E57A-4C48-B053-1CE8CC36F7BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{765F6C4B-0824-432D-B3E7-4275EBD8D446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{765F6C4B-0824-432D-B3E7-4275EBD8D446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{765F6C4B-0824-432D-B3E7-4275EBD8D446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{765F6C4B-0824-432D-B3E7-4275EBD8D446}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30876E3C-FFF4-4FD2-BC3A-CF4D0971C445}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30876E3C-FFF4-4FD2-BC3A-CF4D0971C445}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30876E3C-FFF4-4FD2-BC3A-CF4D0971C445}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30876E3C-FFF4-4FD2-BC3A-CF4D0971C445}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E07D14FC-6DD8-4C20-9487-14CE8CE3844D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E07D14FC-6DD8-4C20-9487-14CE8CE3844D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E07D14FC-6DD8-4C20-9487-14CE8CE3844D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E07D14FC-6DD8-4C20-9487-14CE8CE3844D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{224DAD42-87BB-43E0-9715-AE3185546164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{224DAD42-87BB-43E0-9715-AE3185546164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{224DAD42-87BB-43E0-9715-AE3185546164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{224DAD42-87BB-43E0-9715-AE3185546164}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,35 @@
+﻿<Page x:Class="KKServerGUI.logs"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KKServerGUI"
+      mc:Ignorable="d" d:DesignHeight="824"
+      Title="logs" d:DesignWidth="596" >
+
+    <Grid>
+
+        <ScrollViewer HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <Grid>
+
+                <TextBlock x:Name="textBlock" Style="{DynamicResource PageTitle}" Margin="0,0,0.2,0">Logs</TextBlock>
+                <StackPanel >
+                    <WrapPanel Margin="0,69,0.2,10" VerticalAlignment="Top" >
+
+                    <Button x:Name="request" Content="Requests per day" Height="25"  Width="120" VerticalAlignment="Top" Margin="2" Click="request_Click" />
+                    <Button x:Name="requesttime" Content="Requests per time" Height="25"  Width="120" VerticalAlignment="Top" Margin="2" Click="requesttime_Click"/>
+
+                </WrapPanel>
+                <Grid x:Name="frame" Margin="2,2,2,2" Background="White" Height="699" VerticalAlignment="Top" >
+                    <!--<local:request_line_chart VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,0,0,0" HorizontalAlignment="Stretch"  />-->
+                    <local:request_line_chart VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,0,0,0" HorizontalAlignment="Stretch"  />
+                </Grid>
+                </StackPanel>
+                
+
+
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

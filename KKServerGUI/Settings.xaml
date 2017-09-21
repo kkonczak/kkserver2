@@ -1,0 +1,97 @@
+﻿<Page x:Class="KKServerGUI.Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KKServerGUI"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="600"
+      Title="Settings" Loaded="Page_Loaded">
+
+    <Grid>
+        <ScrollViewer HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <Grid>
+
+                <TextBlock x:Name="textBlock" Style="{DynamicResource PageTitle}" Margin="0,0,0.2,0"><Run Text="Settings"/></TextBlock>
+                <Grid RenderTransformOrigin="0.504,0.556" Margin="0,63,0.2,0" VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                        <RowDefinition Height="22"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="134"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock TextWrapping="Wrap" Text="IP Address:" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"/>
+                    <local:iptextbox x:Name="ipaddress" HorizontalAlignment="Left" Margin="134,-1,0,0" VerticalAlignment="Top" Width="149" RenderTransformOrigin="0.5,0.5" Height="21" Grid.ColumnSpan="2" />
+                    <TextBlock  TextWrapping="Wrap" Text="Port:" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131" Grid.Column="0" Margin="0,0.6,0,0" Grid.Row="1"/>
+                    <TextBox x:Name="port"  HorizontalAlignment="Left" TextWrapping="Wrap" Text="80" Width="73" Height="18" VerticalAlignment="Top" MaxLength="5" Grid.Column="1" Margin="0,0.6,0,0" Grid.Row="1"/>
+
+                    <TextBlock  TextWrapping="Wrap" Text="Root path:" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131" Grid.Column="0" Grid.Row="2" Margin="0,1.2,0,0"/>
+                    <TextBox x:Name="rootpath" MaxLines="1" Margin="0,0,32.2,0" Grid.Row="2" TextWrapping="Wrap" Text=" " Height="20" VerticalAlignment="Top" Grid.Column="1" />
+                    <Button Grid.Column="1" Grid.Row="2" Content="..." HorizontalAlignment="Right" Margin="0,1.2,-2.8,0.2" Width="34" Click="Button_Click" />
+
+                    <TextBlock  TextWrapping="Wrap" Text="Path with error pages:" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131" Grid.Column="0" Grid.Row="3" Margin="0,2.8,0,0" Grid.RowSpan="2"/>
+                    <TextBox x:Name="errorpath" MaxLines="1" Margin="0,0,32.2,0" Grid.Row="3" TextWrapping="Wrap" Text=" " Height="20" VerticalAlignment="Top" Grid.Column="1" />
+                    <Button Grid.Column="1" Grid.Row="3" Content="..." HorizontalAlignment="Right" Margin="0,0,-2.8,0" Width="34" Click="Button_Click_1" />
+
+                    <TextBlock  TextWrapping="Wrap" Text="Header-downl. timeout:" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131" Grid.Column="0" Grid.Row="4" Margin="0,1.2,0,0"/>
+                    <TextBox x:Name="headertimeout" MaxLines="1" Margin="0,1.0,32.2,0" Grid.Row="4" TextWrapping="Wrap" Text=" " Height="20" VerticalAlignment="Top" Grid.Column="1" />
+                    <TextBlock  TextWrapping="Wrap" Text="ms" Height="20" VerticalAlignment="Top" HorizontalAlignment="right" Width="30" Grid.Column="1" Grid.Row="4" Margin="0,1.2,0,0"/>
+
+                    <TextBlock  TextWrapping="Wrap" Text="Request-downl. timeout:" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131" Grid.Column="0" Grid.Row="5" Margin="0,1.2,0,0"/>
+                    <TextBox x:Name="bodytimeout" MaxLines="1" Margin="0,1.0,32.2,0" Grid.Row="5" TextWrapping="Wrap" Text=" " Height="20" VerticalAlignment="Top" Grid.Column="1" />
+                    <TextBlock  TextWrapping="Wrap" Text="ms" Height="20" VerticalAlignment="Top" HorizontalAlignment="right" Width="30" Grid.Column="1" Grid.Row="5" Margin="0,1.2,0,0"/>
+
+                    <CheckBox Name="browsedirectories" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Content="Enable browsing of directories"/>
+                </Grid>
+
+                <TextBlock  Text="Default documents" Style="{DynamicResource PageTitle}" FontSize="20" Margin="0,219,0.2,0" Height="32"/>
+                <ListBox x:Name="listBox" Height="100" Margin="0,256,82.2,0" VerticalAlignment="Top"/>
+                <StackPanel Height="100" Margin="0,256,0.2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="82">
+                    <Button x:Name="button" Content="New..." Click="button_Click_2" Margin="3,0,3,3"/>
+                    <Button x:Name="button1" Content="Remove" Margin="3,0,3,3" Click="button1_Click"/>
+                    <Button x:Name="button2" Content="Move up" Margin="3,0,3,3" Click="button2_Click"/>
+                    <Button x:Name="button3" Content="Move down" Margin="3,0,3,3" Click="button3_Click"/>
+                </StackPanel>
+
+
+                <TextBlock  Text="CGI interpreters" Style="{DynamicResource PageTitle}" FontSize="20" Margin="0,373,0.2,0" Height="32"/>
+                <ListView x:Name="listView" Height="106" Margin="0,410,82.2,0" VerticalAlignment="Top" SelectionMode="Single">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="File name ends with" Width="200" DisplayMemberBinding="{Binding endswith}"/>
+                            <GridViewColumn Header="Path to interpreter" Width="200" DisplayMemberBinding="{Binding path}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <StackPanel Height="106" Margin="0,410,0.2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="82">
+                    <Button x:Name="button4" Content="New..." Margin="3,0,3,3" Click="button4_Click"/>
+                    <Button x:Name="button5" Content="Remove" Margin="3,0,3,3" Click="button5_Click"/>
+                </StackPanel>
+
+
+                <TextBlock  Text="Mimetypes" Style="{DynamicResource PageTitle}" FontSize="20" Margin="0,535,0.2,0" Height="32"/>
+                <ListView x:Name="listView2" Height="106" Margin="0,572,82.2,0" VerticalAlignment="Top" SelectionMode="Single">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="File name ends with" Width="200" DisplayMemberBinding="{Binding endswith}"/>
+                            <GridViewColumn Header="Mimetype" Width="200" DisplayMemberBinding="{Binding mimetype}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <StackPanel Height="106" Margin="0,572,0.2,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="82">
+                    <Button x:Name="button6" Content="New..." Margin="3,0,3,3" Click="button6_Click"/>
+                    <Button x:Name="button7" Content="Remove" Margin="3,0,3,3" Click="button7_Click"/>
+                </StackPanel>
+                <local:MenuButton Height="77" Margin="0,0,10.2,0" VerticalAlignment="Top" Width="53" Text="Save" Image="save.png" HorizontalAlignment="Right" click="MenuButton_click" />
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,19 @@
+﻿<Application x:Class="KKServerGUI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:KKServerGUI"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <Style x:Key="PageTitle" TargetType="{x:Type TextBlock}">
+            <!-- TextWrapping="Wrap" Foreground="#FF0068FF" FontSize="36" Height="55" VerticalAlignment="Top" Margin="0,0,-16.8,0"-->
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="#FF0068FF" />
+            <Setter Property="FontSize" Value="36" />
+            <Setter Property="Height" Value="55" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Margin" Value="0,0,-16.8,0" />
+        </Style>
+
+    </Application.Resources>
+</Application>

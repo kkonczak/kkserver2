@@ -1,0 +1,41 @@
+﻿<Window x:Class="KKServerGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KKServerGUI"
+        mc:Ignorable="d"
+        Title="KKServer" Height="443.21" Width="692.2" Icon="icon.ico">
+
+    <Grid>
+        <DockPanel Margin="0,0,0,-0.4" HorizontalAlignment="Left" Width="85" LastChildFill="False">
+            <DockPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-90" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF5C8FA5" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </DockPanel.Background>
+
+            <StackPanel Height="414" VerticalAlignment="Top" Width="85">
+                <local:MenuButton x:Name="btnHome" VerticalAlignment="Top" click="button_Click" Image="home.png" Text="Home" />
+                <local:MenuButton x:Name="btnSettings"  click="btnSettings_click" Image="settings.png" Text="Settings"  VerticalAlignment="Top" />
+                <local:MenuButton x:Name="btnLoggs"  click="btnLoggs_click" Image="logs.png" Text="Logs"  VerticalAlignment="Top" />
+                <local:MenuButton x:Name="btnPlugins"  click="btnPlugins_click" Image="plugin.png" Text="Plugins"  VerticalAlignment="Top" />
+                <local:MenuButton x:Name="btnInfo"  click="btnInfo_click" Image="info.png" Text="About"  VerticalAlignment="Top" />
+
+            </StackPanel>
+
+        </DockPanel>
+        <Frame x:Name="frame" Content="Frame" Margin="100,0,-0.4,-0.4" Background="White" NavigationUIVisibility="Hidden"/>
+
+
+    </Grid>
+</Window>
