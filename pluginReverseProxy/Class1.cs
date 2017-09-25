@@ -12,12 +12,12 @@ namespace pluginReverseProxy
         private PluginSettingsRemove settingRemove;
         private PluginSettingsSet settingSet;
        private  List<string> requests;
-       private List<serwer> redirectTo;
+       private List<server> redirectTo;
        private List<string> redirectPath;
         private bool rewriteHostHeader = false;
         private bool xForwarderForHeader = false;
 
-        struct serwer
+        struct server
         {
             public string[] hosts;
             public int[] connections;
@@ -182,7 +182,7 @@ namespace pluginReverseProxy
                         {
 
                         }
-
+                        redirectTo[i].connections[minConnectioni]--;
 
 
                     }
@@ -195,11 +195,11 @@ namespace pluginReverseProxy
             requests = settingGet("requestRegEx", typeof(Class1));
             redirectPath = settingGet("redirectPath", typeof(Class1));
             List<string> redirectToString = settingGet("redirectHostName", typeof(Class1));
-            redirectTo = new List<serwer>();
+            redirectTo = new List<server>();
             for (int i = 0; i < redirectToString.Count; i++)
             {
                 string[] servers = redirectToString[i].Split(';');
-                redirectTo.Add(new pluginReverseProxy.Class1.serwer() { hosts = (string[])servers.Clone(), connections=new int[servers.Length]  });
+                redirectTo.Add(new pluginReverseProxy.Class1.server() { hosts = (string[])servers.Clone(), connections=new int[servers.Length]  });
             }
 
             if (settingGet("hostHeaderRewrite", typeof(Class1)) != null)

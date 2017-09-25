@@ -91,8 +91,8 @@ namespace KKServerGUI
 
             double width = rect.ActualWidth - 50;
             double height = rect.ActualHeight - 10 - 20;
-            double x = 40;
-            double y = 10;
+            const double startX = 40;
+            const double startY = 10;
             double max = data.Values.First<chartData>().numOfRequest;
             double min = data.Values.First<chartData>().numOfRequest;
             double mov = width / (double)(data.Count - 1);
@@ -104,13 +104,13 @@ namespace KKServerGUI
                 if (min > el.Value.numOfRequest) { min = el.Value.numOfRequest; }
             }
 
-            rect.Children.Add(new Line() { X1 = x, X2 = x, Y1 = 10, Y2 = 10 + height, Stroke = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0)), StrokeThickness = 1 });
-            rect.Children.Add(new Line() { X1 = x + width, X2 = x + width, Y1 = 10, Y2 = 10 + height, Stroke = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0)), StrokeThickness = 1 });
+            rect.Children.Add(new Line() { X1 = startX, X2 = startX, Y1 = 10, Y2 = 10 + height, Stroke = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0)), StrokeThickness = 1 });
+            rect.Children.Add(new Line() { X1 = startX + width, X2 = startX + width, Y1 = 10, Y2 = 10 + height, Stroke = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0)), StrokeThickness = 1 });
 
             int i1 = 0;
             for (double my = 10; my <= height + 10; my += height / 15)
             {
-                rect.Children.Add(new Line() { X1 = x, X2 = x + width, Y1 = my, Y2 = my, Stroke = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0)), StrokeThickness = 1 });
+                rect.Children.Add(new Line() { X1 = startX, X2 = startX + width, Y1 = my, Y2 = my, Stroke = new SolidColorBrush(Color.FromArgb(100, 0, 0, 0)), StrokeThickness = 1 });
                 var tb = new TextBlock();
                 tb.Text = ((int)(max - ((double)i1 * (max / 15)))).ToString();
                 tb.VerticalAlignment = VerticalAlignment.Top;
@@ -143,18 +143,18 @@ namespace KKServerGUI
 
             }
 
-
+            double x = startX;
             foreach (var el in data)
             {
-                linia.Points.Add(new Point(x, (height + y) - (height * (el.Value.numOfRequest / max))));
+                linia.Points.Add(new Point(x, (height + startY) - (height * (el.Value.numOfRequest / max))));
                 x += mov;
                 listView.Items.Add(new dd { date = el.Key.ToShortDateString(), request = el.Value.numOfRequest.ToString() });
             }
             //tworzenie ładnego podtła
             var back = new Polygon();
             back.Points = linia.Points.Clone();
-            back.Points.Add(new Point(width + 40, height + y));
-            back.Points.Add(new Point(40, height + y));
+            back.Points.Add(new Point(width + 40, height + startY));
+            back.Points.Add(new Point(40, height + startY));
             back.Fill = new SolidColorBrush(Color.FromArgb(100, 255, 0, 0));
             rect.Children.Add(back);
 

@@ -26,6 +26,7 @@ namespace KKServerGUI
         }
         List<pluginInterface.SettingDescriptionBase> settingsDescription = new List<pluginInterface.SettingDescriptionBase>();
         Grid settingGrid = new Grid();
+        private static readonly  Brush[] backgroundGroupsBrushes = new Brush[] {new SolidColorBrush(Color.FromArgb(100,255,0,0)), new SolidColorBrush(Color.FromArgb(100, 0, 255, 0)), new SolidColorBrush(Color.FromArgb(100, 0, 0, 255)), new SolidColorBrush(Color.FromArgb(100, 255, 255, 0)), new SolidColorBrush(Color.FromArgb(100, 255, 0, 255)), new SolidColorBrush(Color.FromArgb(100, 0, 255, 255)), new SolidColorBrush(Color.FromArgb(100, 100, 0, 0)) };
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -102,6 +103,8 @@ settingGrid.HorizontalAlignment = HorizontalAlignment.Stretch;
            
 
         }
+        private int numOfActiveGroup = 0;
+        Dictionary<string,int> namesOfGroup = new Dictionary<string,int>();
         void AddItemOnList(string key, string value)
         {
 
@@ -120,6 +123,16 @@ settingGrid.HorizontalAlignment = HorizontalAlignment.Stretch;
             toolTipStackPanel.Children.Add(new TextBlock() { Text = type.name, FontWeight = FontWeights.Bold });
             toolTipStackPanel.Children.Add(new TextBlock() { Text = type.description });
             toolTipStackPanel.Children.Add(new TextBlock() { Text = "Multiple: " + (type.isSimple ? "false" : "true") });
+            if (!type.isSimple)
+            {
+                if (!namesOfGroup.Keys.Contains(type.name)) { 
+              
+                    namesOfGroup.Add(type.name, 0);
+                    numOfActiveGroup++;
+                }
+                tb.Background = backgroundGroupsBrushes[namesOfGroup[type.name] % backgroundGroupsBrushes.Length];
+                namesOfGroup[type.name]++;
+            }
             tb.ToolTip = toolTipStackPanel;//type.name +"\n"+type.description +"\nIs Multiple: "+(type.isSimple?"false":"true");
                                            //dodawanie
             settingGrid.Children.Add(tb);

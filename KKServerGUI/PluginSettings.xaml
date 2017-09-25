@@ -11,7 +11,7 @@
             <TextBlock x:Name="textBlock" Style="{DynamicResource PageTitle}" Margin="0,0,0.2,0">Plugin Settings</TextBlock>
             <StackPanel Margin="0,55,0.4,0"  VerticalAlignment="Top">
                 <StackPanel x:Name="settingsList" >
-                    <TextBlock FontSize="18" x:Name="NoSettings">No settings...</TextBlock>
+                    <TextBlock FontSize="18" x:Name="NoSettings" TextAlignment="Center" Foreground="#FF5C5C5C">No settings...</TextBlock>
                 </StackPanel>
                 <Grid Margin="2,10,2,2">
 
