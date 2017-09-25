@@ -14,7 +14,21 @@
             <DatePicker x:Name="datepicker2" HorizontalAlignment="Left" Width="136" Margin="0,0,0,0.2" SelectedDateChanged="datepicker1_SelectedDateChanged"/>
 
         </StackPanel>
-        <Grid  Margin="10,47,2,220.8"  x:Name="rect" SizeChanged="rect_SizeChanged"/>
+        <Grid  Margin="10,47,2,220.8"  x:Name="rect" SizeChanged="rect_SizeChanged">
+        
+        </Grid>
+        <TextBlock x:Name="textBlockLoadPercent" HorizontalAlignment="Center" Height="29" Margin="0,50,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="155" TextAlignment="Center" Visibility="Collapsed" Foreground="#FF005FB9" FontSize="18">
+            <TextBlock.Triggers>
+                <EventTrigger RoutedEvent="TextBlock.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="textBlockLoadPercent" From="0.5" To="1" Duration="0:0:0.6" Storyboard.TargetProperty="Opacity" RepeatBehavior="Forever" AutoReverse="True" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </TextBlock.Triggers>
+        </TextBlock>
+
         <ListView x:Name="listView" Margin="10,0,10,9.8" Height="206" VerticalAlignment="Bottom">
             <ListView.View>
                 <GridView>

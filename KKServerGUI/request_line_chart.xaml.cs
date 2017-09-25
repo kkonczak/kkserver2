@@ -19,28 +19,37 @@ namespace KKServerGUI
     /// </summary>
     public partial class request_line_chart : UserControl
     {
+        Dictionary<DateTime, chartData> data = new Dictionary<DateTime, chartData>();
+
+        System.Threading.Thread thr;
+        private bool dataIsReady = false;
+        private double loadPercent = 0;
+
+
         public request_line_chart()
         {
             InitializeComponent();
         }
-        Dictionary<DateTime, chartData> data = new Dictionary<DateTime, chartData>();
-        System.Threading.Thread thr;
-
+       
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var t = new System.Windows.Threading.DispatcherTimer();
-            t.Interval = new TimeSpan(0);
-
-            t.Tick += (object sender1, EventArgs e1) => { load(); ((System.Windows.Threading.DispatcherTimer)sender1).Stop(); };
-            t.Start();
+            
+            load(true);
         }
         private void load(bool clear = true)
         {
+            dataIsReady = false;
             data.Clear();
             thr = new System.Threading.Thread(() => getData());
             thr.Start();
-            thr.Join();
-            next(clear);
+            var t = new System.Windows.Threading.DispatcherTimer();
+            t.Interval = new TimeSpan(3);
+
+            t.Tick += (object sender1, EventArgs e1) => {
+                textBlockLoadPercent.Text = ((int)(loadPercent*100)).ToString()+"%"; if (dataIsReady) { next(clear); ((System.Windows.Threading.DispatcherTimer)sender1).Stop(); textBlockLoadPercent.Visibility = Visibility.Collapsed ; } };
+            t.Start();
+            textBlockLoadPercent.Visibility = Visibility.Visible;
+            textBlockLoadPercent.Text = "0%";
         }
         private void next(bool clear)
         {
@@ -222,6 +231,9 @@ namespace KKServerGUI
 
         private void getData()
         {
+            loadPercent = 0;
+            long bytesLoad = 0;
+            long bytesTotal = 0;
             var sett = new System.Xml.XmlDocument();
             sett.Load(AppDomain.CurrentDomain.BaseDirectory + "config.xml");
             string path = "";
@@ -240,9 +252,11 @@ namespace KKServerGUI
                 return;
             }
             var file = new System.IO.StreamReader(new System.IO.FileStream(path, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite));
+            bytesTotal = file.BaseStream.Length;
             while (!file.EndOfStream)
             {
                 string line = file.ReadLine();
+                bytesLoad += line.Length;
                 if (line.StartsWith("GetFile\t"))
                 {
                     string[] par = line.Split('\t');
@@ -261,6 +275,7 @@ namespace KKServerGUI
 
                     }
                 }
+                loadPercent = (double)bytesLoad / (double)bytesTotal;
             }
             if (date1.Ticks == 0)
             {
@@ -270,7 +285,8 @@ namespace KKServerGUI
             {
                 date2 = data.Keys.Max<DateTime>();
             }
-
+            loadPercent = 1;
+            dataIsReady = true;
         }
 
         private void rect_SizeChanged(object sender, SizeChangedEventArgs e)
