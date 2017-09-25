@@ -17,8 +17,11 @@ namespace KKServerGUI
     /// <summary>
     /// Interaction logic for iptextbox.xaml
     /// </summary>
+    /// 
+
     public partial class iptextbox : UserControl
     {
+        private bool isIPv6 = false;
         public iptextbox()
         {
             InitializeComponent();
@@ -27,15 +30,31 @@ namespace KKServerGUI
         {
             get
             {
-                return new System.Net.IPAddress(new byte[] { byte.Parse(octet1.Text), byte.Parse(octet2.Text), byte.Parse(octet3.Text), byte.Parse(octet4.Text) });
+                if (isIPv6)
+                {
+                    return System.Net.IPAddress.Parse(textBox.Text);
+                }
+                else
+                {
+                    return new System.Net.IPAddress(new byte[] { byte.Parse(octet1.Text), byte.Parse(octet2.Text), byte.Parse(octet3.Text), byte.Parse(octet4.Text) });
+                }
             }
             set
             {
-                byte[] b = value.GetAddressBytes();
-                octet1.Text = b[0].ToString();
-                octet2.Text = b[1].ToString();
-                octet3.Text = b[2].ToString();
-                octet4.Text = b[3].ToString();
+                if (value.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6)
+                {
+                    textBox.Text = value.ToString();
+                    ChangeVisualIPVersion();
+                }
+                else
+                {
+                    byte[] b = value.GetAddressBytes();
+                    octet1.Text = b[0].ToString();
+                    octet2.Text = b[1].ToString();
+                    octet3.Text = b[2].ToString();
+                    octet4.Text = b[3].ToString();
+                }
+
             }
         }
 
@@ -143,7 +162,8 @@ namespace KKServerGUI
                     ((System.Windows.Controls.TextBox)sender).Text = "0";
                     ((System.Windows.Controls.TextBox)sender).SelectAll();
                 }
-            }else
+            }
+            else
             {
                 if (((System.Windows.Controls.TextBox)sender).Text == "")
                 {
@@ -151,9 +171,40 @@ namespace KKServerGUI
                 }
                 else
                 {
-((System.Windows.Controls.TextBox)sender).Text = "0";
+                    ((System.Windows.Controls.TextBox)sender).Text = "0";
                 }
-                
+
+            }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeVisualIPVersion();
+        }
+        private void ChangeVisualIPVersion()
+        {
+            isIPv6 = !isIPv6;
+            if (isIPv6)
+            {
+                button.Content = "v4";
+                IPv6.Visibility = Visibility.Visible;
+                IPv4.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                button.Content = "v6";
+                IPv6.Visibility = Visibility.Collapsed;
+                IPv4.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void textBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(@"([0-9A-Fa-f\:]{1,})");
+            if (!regex.IsMatch(e.Text))
+            {
+
             }
         }
     }

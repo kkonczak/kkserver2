@@ -30,12 +30,9 @@ namespace httpd
                 port = sett.SelectSingleNode("settings/server/port").InnerText;
 
                 porti = int.Parse(port);
-                ipb[0] = byte.Parse(ip.Split('.')[0]);
-                ipb[1] = byte.Parse(ip.Split('.')[1]);
-                ipb[2] = byte.Parse(ip.Split('.')[2]);
-                ipb[3] = byte.Parse(ip.Split('.')[3]);
+ 
 
-                Server myServer = new Server(new System.Net.IPAddress(ipb), porti);
+                Server myServer = new Server( System.Net.IPAddress.Parse(ip), porti);
                 //main
                 string wwwDir;
                 string errorDir;

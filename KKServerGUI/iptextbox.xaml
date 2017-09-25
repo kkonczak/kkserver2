@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KKServerGUI"
              mc:Ignorable="d" 
-             d:DesignHeight="25" d:DesignWidth="200" Background="White" BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" BorderThickness="1" Style="{DynamicResource uc}" >
+             d:DesignHeight="25" d:DesignWidth="222.667" Background="White" BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" BorderThickness="1" Style="{DynamicResource uc}" >
     <UserControl.Resources>
         <Style TargetType="TextBox" x:Key="boxes" >
             <Style.Triggers>
@@ -26,25 +26,35 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-        
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="7*"/>
-            <ColumnDefinition Width="40*"/>
-        </Grid.ColumnDefinitions>
-        <TextBox x:Name="octet1" Margin="0,1,0.4,0.8" TextWrapping="Wrap" Text="10" MaxLength="3" TextAlignment="Center" BorderBrush="Transparent" TextChanged="octet1_TextChanged" PreviewKeyDown="octet1_KeyDown" Style="{DynamicResource boxes}" BorderThickness="0"  />
-        <TextBox x:Name="octet2" Margin="0,1,0.4,0.8" TextWrapping="Wrap" Text="10" MaxLength="3" TextAlignment="Center" Grid.Column="2" BorderBrush="Transparent" TextChanged="octet1_TextChanged" PreviewKeyDown="octet1_KeyDown" Style="{DynamicResource boxes}" BorderThickness="0" />
-        <TextBox x:Name="octet3" Margin="0,1,0.4,0.8" TextWrapping="Wrap" Text="10" MaxLength="3" TextAlignment="Center" Grid.Column="4" BorderBrush="Transparent" TextChanged="octet1_TextChanged" PreviewKeyDown="octet1_KeyDown" Style="{DynamicResource boxes}" BorderThickness="0" />
-        <TextBox x:Name="octet4" Margin="0,1,0.4,0.8" TextWrapping="Wrap" Text="10" MaxLength="3" TextAlignment="Center" Grid.Column="6" BorderBrush="Transparent" TextChanged="octet1_TextChanged" PreviewKeyDown="octet1_KeyDown" Style="{DynamicResource boxes}" BorderThickness="0" />
-        <TextBlock Grid.Column="1" Margin="0,1,0,0" TextWrapping="Wrap" Text="." TextAlignment="Center" />
-        <TextBlock Grid.Column="3" Margin="0,1,0,0" TextWrapping="Wrap" Text="." TextAlignment="Center" />
-        <TextBlock Grid.Column="5" Margin="0,1,0,0" TextWrapping="Wrap" Text="." TextAlignment="Center" />
+    <Grid Margin="0">
+        <Grid Margin="23,0,0,0" x:Name="IPv4" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="octet1" Margin="0,1,0.4,0.8" TextWrapping="Wrap" Text="10" MaxLength="3" TextAlignment="Center" BorderBrush="Transparent" TextChanged="octet1_TextChanged" PreviewKeyDown="octet1_KeyDown" Style="{DynamicResource boxes}" BorderThickness="0"  />
+            <TextBox x:Name="octet2" Margin="0,1,0.4,0.8" TextWrapping="Wrap" Text="10" MaxLength="3" TextAlignment="Center" Grid.Column="2" BorderBrush="Transparent" TextChanged="octet1_TextChanged" PreviewKeyDown="octet1_KeyDown" Style="{DynamicResource boxes}" BorderThickness="0" />
+            <TextBox x:Name="octet3" Margin="0,1,0.4,0.8" TextWrapping="Wrap" Text="10" MaxLength="3" TextAlignment="Center" Grid.Column="4" BorderBrush="Transparent" TextChanged="octet1_TextChanged" PreviewKeyDown="octet1_KeyDown" Style="{DynamicResource boxes}" BorderThickness="0" />
+            <TextBox x:Name="octet4" Margin="0,1,0.4,0.8" TextWrapping="Wrap" Text="10" MaxLength="3" TextAlignment="Center" Grid.Column="6" BorderBrush="Transparent" TextChanged="octet1_TextChanged" PreviewKeyDown="octet1_KeyDown" Style="{DynamicResource boxes}" BorderThickness="0" />
+            <TextBlock Grid.Column="1" Margin="0,1,0,0" TextWrapping="Wrap" Text="." TextAlignment="Center" />
+            <TextBlock Grid.Column="3" Margin="0,1,0,0" TextWrapping="Wrap" Text="." TextAlignment="Center" />
+            <TextBlock Grid.Column="5" Margin="0,1,0,0" TextWrapping="Wrap" Text="." TextAlignment="Center" />
 
+
+        </Grid>
+        <Grid Margin="23,0,0,0" x:Name="IPv6" Visibility="Collapsed" >
+            <TextBox x:Name="textBox" Margin="-1,0,-0.2,0.4" TextWrapping="Wrap" PreviewTextInput="textBox_PreviewTextInput"  Style="{DynamicResource boxes}" BorderThickness="0"/>
+
+
+        </Grid>
+        <Button x:Name="button" Content="v6" HorizontalAlignment="Left" Width="22" Click="button_Click"/>
 
     </Grid>
+
+
 </UserControl>
