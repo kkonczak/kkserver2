@@ -19,6 +19,9 @@ namespace KKServerGUI
     /// </summary>
     public partial class PluginListItem : UserControl
     {
+        public delegate void itemClickDelegate();
+        public event itemClickDelegate itemClick;
+        public bool IsItemClicked = false;
         private object _tag;
         public PluginListItem()
         {
@@ -35,6 +38,23 @@ namespace KKServerGUI
             {
                 _tag = value;
             }
+        }
+        public void Collapse()
+        {
+            options.Visibility = Visibility.Collapsed;
+            IsItemClicked = false;
+            Background = Brushes.White;
+        }
+        public void Show()
+        {
+            options.Visibility = Visibility.Visible;
+            IsItemClicked = true;
+            Background = new LinearGradientBrush(Color.FromRgb(170, 221, 255), Colors.White, 90);
+        }
+
+        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            itemClick();
         }
     }
 }

@@ -23,17 +23,28 @@ namespace KKServerGUI
         {
             InitializeComponent();
         }
-        public void addPlugin(string name, string description, System.Windows.Media.ImageSource image, Action<object> enable, bool isEnable, Action<object> uninstall, object tag=null)
+        public void addPlugin(string name, string description, System.Windows.Media.ImageSource image, Action<object> enable, bool isEnable, Action<object> uninstall, object tag = null)
         {
             var elem = new PluginListItem();
             elem.title.Text = name;
             elem.description.Text = description;
             elem.image.Source = image;
-            elem.uninstall.Click += (object sender, RoutedEventArgs e)=> { uninstall(tag); };
+            elem.uninstall.Click += (object sender, RoutedEventArgs e) => { uninstall(tag); };
             elem.disable.Click += (object sender, RoutedEventArgs e) => { enable(tag); };
-            elem.settings.Click += (object sender, RoutedEventArgs e) => { PluginSettings  settingsWindow = new PluginSettings();settingsWindow.pluginName = (string)tag; settingsWindow.ShowDialog(); };
+            elem.settings.Click += (object sender, RoutedEventArgs e) => { PluginSettings settingsWindow = new PluginSettings(); settingsWindow.pluginName = (string)tag; settingsWindow.ShowDialog(); };
             elem.disable.Content = (isEnable ? "Disable" : "Enable");
             elem.tag = tag;
+            elem.itemClick += () =>
+             {
+                 for (int i = 0; i < list.Children.Count; i++)
+                 {
+                     if (list.Children[i] is PluginListItem)
+                     {
+                         ((PluginListItem)list.Children[i]).Collapse();
+                     }
+                 }
+                 ((PluginListItem)elem ).Show();
+             };
             list.Children.Add(elem);
         }
         public void reset()
