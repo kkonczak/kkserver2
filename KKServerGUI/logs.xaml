@@ -16,10 +16,23 @@
                 <StackPanel >
                     <WrapPanel Margin="0,69,0.2,10" VerticalAlignment="Top" >
 
-                    <Button x:Name="request" Content="Requests per day" Height="25"  Width="120" VerticalAlignment="Top" Margin="2" Click="request_Click" />
-                    <Button x:Name="requesttime" Content="Requests per time" Height="25"  Width="120" VerticalAlignment="Top" Margin="2" Click="requesttime_Click"/>
+                        <Button x:Name="request" Height="25"  Width="150" VerticalAlignment="Top" Margin="2" Click="request_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="chartLinear.png" Height="20"></Image>
+                                <Border><TextBlock VerticalAlignment="Center" >Requests per day</TextBlock></Border>
+                            </StackPanel>
+                        </Button>
 
-                </WrapPanel>
+                        <Button x:Name="requesttime" Height="25"  Width="150" VerticalAlignment="Top" Margin="2" Click="requesttime_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="chartTime.png" Height="20"></Image>
+                                <Border>
+                                    <TextBlock VerticalAlignment="Center">Requests per time</TextBlock>
+                                </Border>
+                            </StackPanel>
+                        </Button>
+
+                    </WrapPanel>
                 <Grid x:Name="frame" Margin="2,2,2,2" Background="White" Height="699" VerticalAlignment="Top" >
                     <!--<local:request_line_chart VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,0,0,0" HorizontalAlignment="Stretch"  />-->
                     <local:request_line_chart VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Disabled" Margin="0,0,0,0" HorizontalAlignment="Stretch"  />
